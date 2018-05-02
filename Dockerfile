@@ -48,6 +48,8 @@ RUN apt-get -qq install xutils-dev
 RUN apt-get -qq install bison
 RUN apt-get -qq install libunity-dev
 RUN apt-get -qq install python-xcbgen
+RUN apt-get -qq install doxygen
+RUN apt-get -qq install libxcb-xkb-dev
 
 # add experimental repo for gcc-7
 RUN echo "deb http://deb.debian.org/debian/ testing non-free contrib main" >> /etc/apt/sources.list
@@ -56,4 +58,7 @@ RUN apt-get update
 
 RUN apt-get -t testing -qq install --allow-unauthenticated gcc-7 g++-7 cmake
 
-# COPY ./ /tmp/build
+# copy sources
+COPY ./ /tmp/build/tdesktop/
+
+RUN cd /tmp/build/tdesktop && ls -la .travis && .travis/build.sh
