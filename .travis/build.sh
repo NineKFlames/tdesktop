@@ -159,7 +159,7 @@ getXkbCommon() {
   fi
   if [ "$XKB_CACHE_OUTDATED" == "1" ]; then
     buildXkbCommon
-    sudo echo $XKB_CACHE_KEY > "$XKB_CACHE_FILE"
+    echo $XKB_CACHE_KEY > "$XKB_CACHE_FILE"
   else
     info_msg "Using cached libxkbcommon"
   fi
@@ -180,8 +180,8 @@ buildXkbCommon() {
   cd "$EXTERNAL/libxkbcommon"
   ./autogen.sh --prefix=$XKB_PATH
   make $MAKE_ARGS
-  sudo make install
-  sudo ldconfig
+  make install
+  ldconfig
 }
 
 getRange() {
@@ -208,7 +208,7 @@ getRange() {
   fi
   if [ "$RANGE_CACHE_OUTDATED" == "1" ]; then
     buildRange
-    sudo echo $RANGE_CACHE_KEY > "$RANGE_CACHE_FILE"
+    echo $RANGE_CACHE_KEY > "$RANGE_CACHE_FILE"
   else
     info_msg "Using cached range-v3"
   fi
@@ -254,7 +254,7 @@ getVa() {
   fi
   if [ "$VA_CACHE_OUTDATED" == "1" ]; then
     buildVa
-    sudo echo $VA_CACHE_KEY > "$VA_CACHE_FILE"
+    echo $VA_CACHE_KEY > "$VA_CACHE_FILE"
   else
     info_msg "Using cached libva"
   fi
@@ -275,8 +275,8 @@ buildVa() {
   cd "$EXTERNAL/libva"
   ./autogen.sh --prefix=$VA_PATH --enable-static
   make $MAKE_ARGS
-  sudo make install
-  sudo ldconfig
+  make install
+  ldconfig
 }
 
 getVdpau() {
@@ -303,7 +303,7 @@ getVdpau() {
   fi
   if [ "$VDPAU_CACHE_OUTDATED" == "1" ]; then
     buildVdpau
-    sudo echo $VDPAU_CACHE_KEY > "$VDPAU_CACHE_FILE"
+    echo $VDPAU_CACHE_KEY > "$VDPAU_CACHE_FILE"
   else
     info_msg "Using cached libvdpau"
   fi
@@ -324,8 +324,8 @@ buildVdpau() {
   cd "$EXTERNAL/libvdpau"
   ./autogen.sh --prefix=$VDPAU_PATH --enable-static
   make $MAKE_ARGS
-  sudo make install
-  sudo ldconfig
+  make install
+  ldconfig
 }
 
 getFFmpeg() {
@@ -352,7 +352,7 @@ getFFmpeg() {
   fi
   if [ "$FFMPEG_CACHE_OUTDATED" == "1" ]; then
     buildFFmpeg
-    sudo echo $FFMPEG_CACHE_KEY > "$FFMPEG_CACHE_FILE"
+    echo $FFMPEG_CACHE_KEY > "$FFMPEG_CACHE_FILE"
   else
     info_msg "Using cached ffmpeg"
   fi
@@ -435,8 +435,8 @@ buildFFmpeg() {
       --enable-muxer=ogg \
       --enable-muxer=opus
   make $MAKE_ARGS
-  sudo make install
-  sudo ldconfig
+  make install
+  ldconfig
 }
 
 getOpenAL() {
@@ -463,7 +463,7 @@ getOpenAL() {
   fi
   if [ "$OPENAL_CACHE_OUTDATED" == "1" ]; then
     buildOpenAL
-    sudo echo $OPENAL_CACHE_KEY > "$OPENAL_CACHE_FILE"
+    echo $OPENAL_CACHE_KEY > "$OPENAL_CACHE_FILE"
   else
     info_msg "Using cached openal-soft"
   fi
@@ -491,8 +491,8 @@ buildOpenAL() {
       -D ALSOFT_UTILS=OFF \
       ..
   make $MAKE_ARGS
-  sudo make install
-  sudo ldconfig
+  make install
+  ldconfig
 }
 
 getBreakpad() {
@@ -519,7 +519,7 @@ getBreakpad() {
   fi
   if [ "$BREAKPAD_CACHE_OUTDATED" == "1" ]; then
     buildBreakpad
-    sudo echo $BREAKPAD_CACHE_KEY > "$BREAKPAD_CACHE_FILE"
+    echo $BREAKPAD_CACHE_KEY > "$BREAKPAD_CACHE_FILE"
   else
     info_msg "Using cached breakpad"
   fi
@@ -543,8 +543,8 @@ buildBreakpad() {
   cd "$EXTERNAL/breakpad"
   ./configure --prefix=$BREAKPAD_PATH
   make $MAKE_ARGS
-  sudo make install
-  sudo ldconfig
+  make install
+  ldconfig
 }
 
 getCustomQt() {
@@ -572,7 +572,7 @@ getCustomQt() {
   fi
   if [ "$QT_CACHE_OUTDATED" == "1" ]; then
     buildCustomQt
-    sudo echo $QT_CACHE_KEY > "$QT_CACHE_FILE"
+    echo $QT_CACHE_KEY > "$QT_CACHE_FILE"
   else
     info_msg "Using cached patched Qt"
   fi
@@ -614,7 +614,7 @@ buildCustomQt() {
               -nomake examples -nomake tests -no-mirclient \
               -dbus-runtime -no-gstreamer -no-mtdev # <- Not sure about these
   make $MAKE_ARGS
-  sudo make install
+  make install
 }
 
 getGSL() {
@@ -648,7 +648,7 @@ getGYP() {
   fi
   if [ "$GYP_CACHE_OUTDATED" == "1" ]; then
     buildGYP
-    sudo echo $GYP_CACHE_KEY > "$GYP_CACHE_FILE"
+    echo $GYP_CACHE_KEY > "$GYP_CACHE_FILE"
   else
     info_msg "Using cached patched GYP"
   fi

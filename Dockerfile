@@ -50,13 +50,19 @@ RUN apt-get -qq install libunity-dev
 RUN apt-get -qq install python-xcbgen
 RUN apt-get -qq install doxygen
 RUN apt-get -qq install libxcb-xkb-dev
+RUN apt-get -qq install libopus-dev
 
 # add experimental repo for gcc-7
-RUN echo "deb http://deb.debian.org/debian/ testing non-free contrib main" >> /etc/apt/sources.list
+RUN apt-get -qq install software-properties-common
+RUN add-apt-repository ppa:ubuntu-toolchain-r/test
+RUN apt-get -qq update
 
-RUN apt-get update
+RUN apt-get -qq install gcc-7
+RUN apt-get -qq install g++-7
+RUN apt-get -qq install cmake
 
-RUN apt-get -t testing -qq install --allow-unauthenticated gcc-7 g++-7 cmake
+RUN add-apt-repository --remove ppa:ubuntu-toolchain-r/test
+RUN apt-get -qq update
 
 # copy sources
 COPY ./ /tmp/build/tdesktop/
